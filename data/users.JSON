@@ -1,10 +1,19 @@
 {
   "peter": {
     "password": "petar",
-    "portfolio": { "AAPL": 15, "GOOGL": 5, "MSFT": 10 }
+    "portfolio": {
+      "AAPL": 15,
+      "GOOGL": 5,
+      "MSFT": 10,
+      "TSLA": 4
+    }
   },
   "emil": {
     "password": "mangalica",
-    "portfolio": { "TSLA": 8, "AMZN": 12, "GOON": 99 }
+    "portfolio": {
+      "TSLA": 8,
+      "AMZN": 12,
+      "GOON": 99
+    }
   }
 }
