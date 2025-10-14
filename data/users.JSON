@@ -3,7 +3,7 @@
     "password": "petar",
     "portfolio": {
       "AAPL": 15,
-      "GOOGL": 5,
+      "GOOG": 5,
       "MSFT": 10,
       "TSLA": 4
     }
@@ -14,6 +14,14 @@
       "TSLA": 8,
       "AMZN": 12,
       "GOON": 99
+    }
+  },
+  "majmun": {
+    "password": "ohrid69",
+    "portfolio": {
+      "RZLV": 10,
+      "PYPL": 20,
+      "CL": 90
     }
   }
 }
