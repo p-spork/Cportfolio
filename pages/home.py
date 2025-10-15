@@ -2,7 +2,7 @@ import streamlit as st
 import json
 from pathlib import Path
 
-st.set_page_config(page_title="Login - Cportfolio", page_icon="🔐")
+st.set_page_config(page_title="Login - Cportfolio", page_icon="")
 
 # --- Load user data
 data_path = Path(__file__).parent.parent / "data" / "users.json"

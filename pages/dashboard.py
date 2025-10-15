@@ -7,7 +7,7 @@ import yfinance as yf
 from datetime import date, timedelta, datetime
 import altair as alt
 
-st.set_page_config(page_title="Dashboard - Cportfolio", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Dashboard - Cportfolio", page_icon="", layout="wide")
 
 # --- Load user data ---
 data_path = Path(__file__).parent.parent / "data" / "users.json"
@@ -38,7 +38,7 @@ if st.sidebar.button("Log out", use_container_width=True):
     st.session_state.user = None
     st.switch_page("pages/home.py")
 
-st.title(f"{user.capitalize()}'s Portfolio Dashboard 📈")
+st.title(f"{user.capitalize()}'s Portfolio Dashboard ")
 #-------------------
 # Portfolio Management
 
@@ -133,11 +133,17 @@ metrics_col1, metrics_col2 = st.columns(2)
 with metrics_col1:
     st.metric("Total Portfolio Value", f"${total_value:,.2f}")
 with metrics_col2:
-    st.metric(
-        "Daily PnL",
-        f"${daily_pnl_total:,.2f}"
-    ) # why the fuck isnt this formatting correctly with red green. needs to be formatted i gave up
-    
+    color_style = style_pnl(daily_pnl_total)  
+    # html here to colour code the daily pnl since only deltas can be colour-coded with streamlit
+    st.markdown(
+        f"""
+        <div style="display:flex;flex-direction:column;">
+            <span style="font-size:0.9rem;opacity:0.7;">Daily PnL</span>
+            <span style="font-size:2rem;font-weight:700;{color_style}">${daily_pnl_total:,.2f}</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )  
     
 
 
@@ -241,7 +247,7 @@ if FINNHUB_API_KEY:
             return r.json()[:5]
         return []
 
-    st.subheader("📰 Latest News for Your Stocks")
+    st.subheader(" Latest News for Your Stocks")
 
     for ticker in tickers:
         with st.expander(f"{ticker} - Recent Headlines"):
@@ -264,5 +270,5 @@ if FINNHUB_API_KEY:
 
                 st.markdown(f"**[{headline}]({url})**  \n*{source} — {dt_str}*")
 else:
-    st.subheader("📰 Latest News for Your Stocks")
+    st.subheader("Latest News for Your Stocks")
     st.info("Add `FINNHUB_API_KEY` to `.streamlit/secrets.toml` to enable stock news.")
