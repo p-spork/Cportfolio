@@ -199,7 +199,7 @@ else:
 
 
 # --- Add new stock form ---
-st.markdown("### ➕ Add a New Stock")
+st.markdown("### Add a New Stock")
 
 with st.form("add_stock_form"):
     new_ticker = st.text_input("Stock Symbol (e.g., AAPL, MSFT, TSLA)").upper().strip()
