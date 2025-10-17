@@ -23,5 +23,9 @@
       "PYPL": 20,
       "CL": 90
     }
+  },
+  "tester1": {
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$aZhzTGEGo82fhx4Q9RGg/g$n1HJSth5ORnvsz7yVgO6x4wOE6/MyCp6mX5PEFyNRLo",
+    "portfolio": {}
   }
 }

@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 from pathlib import Path
+from security import verify_password
 
 st.set_page_config(page_title="Login - Cportfolio", page_icon="")
 
@@ -25,7 +26,7 @@ else:
     password = st.text_input("Password", type="password")
 
     if st.button("Login", use_container_width=True):
-        if username in USERS and USERS[username]["password"] == password:
+        if username in USERS and verify_password(USERS[username]["password"], password):
             # set session state and redirect
             st.session_state.user = username
             st.success("Login successful! Redirecting...")

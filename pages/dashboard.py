@@ -6,20 +6,13 @@ import requests
 import yfinance as yf
 from datetime import date, timedelta, datetime
 import altair as alt
+from storage import load_users, save_users
 
 st.set_page_config(page_title="Dashboard - Cportfolio", page_icon="", layout="wide")
 
 # load in user data
 data_path = Path(__file__).parent.parent / "data" / "users.json"
 
-# util function to read/write user data
-def load_users():
-    with open(data_path) as f:
-        return json.load(f)
-
-def save_users(users):
-    with open(data_path, "w") as f:
-        json.dump(users, f, indent=2)
 
 USERS = load_users()
 
@@ -51,6 +44,7 @@ def style_pnl(value):
     if value < 0:
         return "color: #ff4d4f;"
     return ""
+# might be an issue here w loading in data for empty portfolio user. either gotta open account w min. 1 stock or adjust this page
 
 st.subheader("Your Portfolio")
 @st.cache_data
