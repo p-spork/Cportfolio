@@ -9,10 +9,10 @@ import altair as alt
 
 st.set_page_config(page_title="Dashboard - Cportfolio", page_icon="", layout="wide")
 
-# --- Load user data ---
+# load in user data
 data_path = Path(__file__).parent.parent / "data" / "users.json"
 
-# Utility function to read/write user data
+# util function to read/write user data
 def load_users():
     with open(data_path) as f:
         return json.load(f)
@@ -23,7 +23,7 @@ def save_users(users):
 
 USERS = load_users()
 
-# ---  Check login status ---
+# check login status
 if "user" not in st.session_state or st.session_state.user is None:
     st.warning("Please log in first.")
     st.switch_page("pages/home.py")
@@ -32,15 +32,16 @@ user = st.session_state.user
 portfolio = USERS[user]["portfolio"]
 tickers = list(portfolio.keys())
 
-# --- Sidebar ---
+# code for the sidebar
 st.sidebar.success(f"Logged in as {user}")
 if st.sidebar.button("Log out", use_container_width=True):
     st.session_state.user = None
     st.switch_page("pages/home.py")
 
 st.title(f"{user.capitalize()}'s Portfolio Dashboard ")
-#-------------------
-# Portfolio Management
+
+
+# portfolio management
 
 def style_pnl(value):
     if pd.isnull(value):
@@ -52,7 +53,7 @@ def style_pnl(value):
     return ""
 
 st.subheader("Your Portfolio")
-@st.cache_data(ttl=300)
+@st.cache_data
 def fetch_prices(ticker_list):
     tickers = (
         [ticker_list]
@@ -198,7 +199,7 @@ else:
     st.info("No price data available to chart.")
 
 
-# --- Add new stock form ---
+# add new stock form
 st.markdown("### Add a New Stock")
 
 with st.form("add_stock_form"):
@@ -210,7 +211,7 @@ if submitted:
     if not new_ticker:
         st.error("Please enter a valid stock symbol.")
     else:
-        # If the stock already exists, add shares
+        # if the stock already exists, add shares
         if new_ticker in portfolio:
             portfolio[new_ticker] += int(new_shares)
             st.success(f"Added {new_shares} more shares of {new_ticker}.")
@@ -218,11 +219,11 @@ if submitted:
             portfolio[new_ticker] = int(new_shares)
             st.success(f"Added {new_ticker} with {new_shares} shares to your portfolio.")
 
-        # Save back to users.json
+        # save info back to users.json
         USERS[user]["portfolio"] = portfolio
         save_users(USERS)
 
-        # Force UI refresh
+        # force UI refresh
         st.rerun()
 
 #stock news from finnhub

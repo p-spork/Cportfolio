@@ -11,7 +11,7 @@ import yfinance as yf
 st.set_page_config(page_title="Cportfolio - Metrics", page_icon="", layout="wide")
 
 
-@st.cache_data(show_spinner=False)
+@st.cache_data
 def load_users() -> dict[str, dict]:
     data_path = Path(__file__).parent.parent / "data" / "users.json"
     with open(data_path) as fp:
@@ -38,7 +38,7 @@ if not portfolio:
     st.stop()
 
 
-@st.cache_data(show_spinner=False)
+@st.cache_data
 def fetch_history(tickers: tuple[str, ...], start: date, end: date) -> pd.DataFrame:
     """Download adjusted close prices for the provided tickers."""
     if not tickers:
@@ -88,6 +88,7 @@ with col_period:
         (default_start, today),
         max_value=today,
     )
+# three main chosen benchmarks, can easily be changed but these represent the overall market well
 with col_benchmark:
     benchmark_map = {
         "Vanguard 500 Index (VFINX)": "VFINX",
@@ -235,7 +236,7 @@ metrics_display = pd.DataFrame(
         "Total Return",
         "Annualized Return",
         "Annualized Volatility",
-        "Sharpe Ratio (rf=0)",
+        "Sharpe Ratio",
         "Tracking Error vs Benchmark",
     ],
 )
@@ -251,6 +252,6 @@ st.dataframe(
 
 
 st.caption(
-    "Performance metrics assume a constant allocation with no transaction costs or dividends, "
+    "Performance metrics assume a constant allocation with no fees or dividends, "
     "and use adjusted closing prices where available."
 )
