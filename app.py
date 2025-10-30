@@ -8,8 +8,11 @@ st.set_page_config(page_title="Cportfolio", page_icon="", layout="wide")
 
 st.title("Welcome to Cportfolio")
 st.write("Use the sidebar to navigate between pages.")
-st.subheader("Sign up")
 
+
+st.subheader("Sign up")
+if st.button("Or sign in here"):
+    st.switch_page("pages/home.py")
 # signup
 
 st.subheader("Create a new account")

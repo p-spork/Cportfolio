@@ -112,15 +112,22 @@ for ticker, shares in portfolio.items():
     )
 
 df = pd.DataFrame(rows)
+
+if df.empty:
+    st.info("Your portfolio is empty. Add positions to view analytics.")
+    st.stop()
+
 df["Portfolio %"] = float("nan")
-if not df.empty and df["Value"].notna().any():
+if df["Value"].notna().any():
     total_value = df["Value"].sum()
     if total_value:
         df["Portfolio %"] = df["Value"] / total_value * 100
 
 numeric_cols = ["Price", "Value", "Daily PnL", "Portfolio %"]
+
 for col in numeric_cols:
-    df[col] = pd.to_numeric(df[col], errors="coerce")
+    if col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
 
 total_value = df["Value"].sum(skipna=True) if "Value" in df else 0.0
 daily_pnl_total = df["Daily PnL"].sum(skipna=True) if "Daily PnL" in df else 0.0
