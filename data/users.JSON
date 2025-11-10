@@ -31,5 +31,14 @@
   "tester2": {
     "password": "$argon2id$v=19$m=65536,t=3,p=4$frmKWxCzrhLzTU1QsqCvug$IEHXA+xBDieO4eACKbn3AYOmSLqS0+Ot8o52sRWAE6s",
     "portfolio": {}
+  },
+  "viki": {
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$vrpP8KbG3lACmOJlL4r3TA$nZBAj7dwLFaij12RVObHEIKQ0YD0/kHBqtdbpmky5W4",
+    "portfolio": {
+      "SNAP": 20,
+      "TSLA": 20,
+      "GOOG": 20,
+      "BTC": 20
+    }
   }
 }
