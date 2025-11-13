@@ -163,7 +163,7 @@ line_chart = (
     alt.Chart(normalized)
     .mark_line()
     .encode(
-        x=alt.X("Date:T", title="Date"),
+        x=alt.X("Date:T"),
         y=alt.Y("Value:Q", title="Growth of $100"),
         color=alt.Color("Series:N", title=""),
         tooltip=[
