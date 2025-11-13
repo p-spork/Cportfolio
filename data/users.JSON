@@ -40,5 +40,9 @@
       "GOOG": 20,
       "BTC": 20
     }
+  },
+  "peter1": {
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$vT+SJcv/aLOul5SHcJoVOw$OZ12N/zIQrNi0tvuMAiNjl9wLV7n0p2SX9lUBXn0FK8",
+    "portfolio": {}
   }
 }
