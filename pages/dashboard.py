@@ -19,7 +19,7 @@ USERS = load_users()
 # check login status
 if "user" not in st.session_state or st.session_state.user is None:
     st.warning("Please log in first.")
-    st.switch_page("pages/home.py")
+    st.switch_page("home.py")
 
 user = st.session_state.user
 portfolio = USERS[user]["portfolio"]
@@ -29,7 +29,7 @@ tickers = list(portfolio.keys())
 st.sidebar.success(f"Logged in as {user}")
 if st.sidebar.button("Log out", use_container_width=True):
     st.session_state.user = None
-    st.switch_page("pages/home.py")
+    st.switch_page("home.py")
 
 st.title(f"{user.capitalize()}'s Portfolio Dashboard ")
 

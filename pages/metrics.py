@@ -23,7 +23,7 @@ USERS = load_users()
 # ensure login to access portfolio metrics
 if "user" not in st.session_state or st.session_state.user is None:
     st.warning("Please log in to access portfolio metrics.")
-    st.switch_page("pages/home.py")
+    st.switch_page("home.py")
 
 user = st.session_state.user
 portfolio = USERS.get(user, {}).get("portfolio", {})
@@ -255,3 +255,9 @@ st.caption(
     "Performance metrics assume a constant allocation with no fees or dividends, "
     "and use adjusted closing prices where available."
 )
+
+# code for the sidebar
+st.sidebar.success(f"Logged in as {user}")
+if st.sidebar.button("Log out", use_container_width=True):
+    st.session_state.user = None
+    st.switch_page("home.py")
