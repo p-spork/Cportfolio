@@ -5,6 +5,6 @@ testing to see repo setup, further details coming
 to run: streamlit run app.py
 
 requirements:
--
+- pip install yfinance
 -
 - etc.

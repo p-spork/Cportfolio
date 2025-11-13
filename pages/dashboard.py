@@ -115,6 +115,32 @@ df = pd.DataFrame(rows)
 
 if df.empty:
     st.info("Your portfolio is empty. Add positions to view analytics.")
+    # add new stock form
+    st.markdown("### Add a New Stock")
+
+    with st.form("add_stock_form"):
+        new_ticker = st.text_input("Stock Symbol (e.g., AAPL, MSFT, TSLA)").upper().strip()
+        new_shares = st.number_input("Number of Shares", min_value=1, step=1)
+        submitted = st.form_submit_button("Add Stock", use_container_width=True)
+
+    if submitted:
+        if not new_ticker:
+            st.error("Please enter a valid stock symbol.")
+        else:
+            # if the stock already exists, add shares
+            if new_ticker in portfolio:
+                portfolio[new_ticker] += int(new_shares)
+                st.success(f"Added {new_shares} more shares of {new_ticker}.")
+            else:
+                portfolio[new_ticker] = int(new_shares)
+                st.success(f"Added {new_ticker} with {new_shares} shares to your portfolio.")
+
+            # save info back to users.json
+            USERS[user]["portfolio"] = portfolio
+            save_users(USERS)
+
+            # force UI refresh
+            st.rerun()
     st.stop()
 
 df["Portfolio %"] = float("nan")
