@@ -1,5 +1,7 @@
 argon2-cffi
 yfinance
-json
 pandas
 huggingface-hub
+streamlit
+requests
+altair
