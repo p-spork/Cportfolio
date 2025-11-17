@@ -1,1 +1,4 @@
 argon2-cffi
+yfinance
+pandas
+huggingface-hub
