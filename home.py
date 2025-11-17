@@ -4,18 +4,21 @@ import streamlit as st
 from security import hash_password, verify_password
 from storage import load_users, save_users
 
-#  load in user data
-
-# Folder that contains app.py
-BASE_DIR = Path(__file__).resolve().parent
-
-# Point to Cportfolio/data/users.JSON
-data_path = BASE_DIR / "data" / "users.json"   
-
-with data_path.open("r", encoding="utf-8") as f:
-    USERS = json.load(f)
-
 st.set_page_config(page_title="Cportfolio", page_icon="", layout="wide")
+#  load in user data
+USERS = load_users()
+# Folder that contains app.py
+#BASE_DIR = Path(__file__).resolve().parent
+
+# Point to Cportfolio/data/users.json
+#data_path = BASE_DIR / "data" / "users.json"   
+
+
+
+#with data_path.open("r", encoding="utf-8") as f:
+ #   USERS = json.load(f)
+
+
 
 st.title("Welcome to Cportfolio")
 st.write("Use the sidebar to navigate between pages.")
