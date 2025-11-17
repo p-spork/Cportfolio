@@ -10,7 +10,7 @@ from storage import load_users, save_users
 BASE_DIR = Path(__file__).resolve().parent
 
 # Point to Cportfolio/data/users.JSON
-data_path = BASE_DIR / "data" / "users.JSON"   
+data_path = BASE_DIR / "data" / "users.json"   
 
 with data_path.open("r", encoding="utf-8") as f:
     USERS = json.load(f)
