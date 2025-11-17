@@ -11,7 +11,7 @@ from storage import load_users, save_users
 st.set_page_config(page_title="Dashboard - Cportfolio", page_icon="", layout="wide")
 
 # load in user data
-data_path = Path(__file__).parent.parent / "data" / "users.json"
+#data_path = Path(__file__).parent.parent / "data" / "users.json"
 USERS = load_users()
 
 # check login status
