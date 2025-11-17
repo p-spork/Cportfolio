@@ -44,8 +44,21 @@
   "peter1": {
     "password": "$argon2id$v=19$m=65536,t=3,p=4$vT+SJcv/aLOul5SHcJoVOw$OZ12N/zIQrNi0tvuMAiNjl9wLV7n0p2SX9lUBXn0FK8",
     "portfolio": {
-      "AAPL": 1,
-      "GOOG": 12
+      "AAPL": 12
+    }
+  },
+  "pande": {
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$UQCgQCEgfw3i79qxqYD26w$5ec8ngQwtJJrd8EbSBBKtZne2bRRIOxdO19jKJqBUvE",
+    "portfolio": {
+      "AAL": 6,
+      "DEFT": 19,
+      "HNST": 25,
+      "LCID": 3,
+      "NGD.TO": 4,
+      "TFC": 2,
+      "VFV.TO": 2,
+      "XEQT.TO": 12,
+      "AAPL": 100
     }
   }
 }

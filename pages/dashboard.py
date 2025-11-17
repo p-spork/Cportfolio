@@ -12,8 +12,6 @@ st.set_page_config(page_title="Dashboard - Cportfolio", page_icon="", layout="wi
 
 # load in user data
 data_path = Path(__file__).parent.parent / "data" / "users.json"
-
-
 USERS = load_users()
 
 # check login status
@@ -21,9 +19,12 @@ if "user" not in st.session_state or st.session_state.user is None:
     st.warning("Please log in first.")
     st.switch_page("home.py")
 
+#load user portfolio
 user = st.session_state.user
 portfolio = USERS[user]["portfolio"]
 tickers = list(portfolio.keys())
+
+stocks = list(portfolio.items())
 
 # code for the sidebar
 st.sidebar.success(f"Logged in as {user}")
@@ -253,6 +254,42 @@ if submitted:
         # force UI refresh
         st.rerun()
 
+
+# update/ remove a stock
+st.divider()
+st.subheader("Update or Remove a Stock")
+
+stock_options = [f"{ticker} ({shares} shares)" for ticker, shares in stocks]
+
+option = st.selectbox(
+"Select Existing Stock to Update or Remove",
+stock_options,
+index=None,
+placeholder="Select Stock...",
+help="Remove Stock")
+st.write("Current Selection:", option)
+print(stocks) # debugging line to be removed later
+
+if option is not None:
+    if st.button("Remove Stock", use_container_width=True):
+       
+        ticker_to_remove = option.split(" ")[0]
+
+        if ticker_to_remove in portfolio:
+           
+            del portfolio[ticker_to_remove]
+            #write back into USERS
+            USERS[user]["portfolio"] = portfolio
+            #save to users.json
+            save_users(USERS)
+            #refresh UI
+            st.rerun()
+        else:
+            st.error("Error ticker not found")
+    st.divider()
+
+
+
 #stock news from finnhub
 FINNHUB_API_KEY = st.secrets.get("FINNHUB_API_KEY")
 
@@ -274,7 +311,7 @@ if FINNHUB_API_KEY:
         if r.status_code == 200:
             return r.json()[:5]
         return []
-
+    
     st.subheader(" Latest News for Your Stocks")
 
     for ticker in tickers:
