@@ -7,16 +7,9 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import yfinance as yf
+from storage import load_users, save_users
 
 st.set_page_config(page_title="Cportfolio - Metrics", page_icon="", layout="wide")
-
-
-@st.cache_data
-def load_users() -> dict[str, dict]:
-    data_path = Path(__file__).parent.parent / "data" / "users.json"
-    with open(data_path) as fp:
-        return json.load(fp)
-
 
 USERS = load_users()
 

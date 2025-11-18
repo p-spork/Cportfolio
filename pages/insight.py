@@ -5,6 +5,7 @@ from datetime import date, timedelta, datetime
 import requests
 import pandas as pd
 import os
+from storage import load_users, save_users
 
 #pip install huggingface-hub
 from huggingface_hub import InferenceClient
@@ -12,9 +13,8 @@ from huggingface_hub import InferenceClient
 st.set_page_config(page_title="Insights - Cportfolio", page_icon="", layout="wide")
 
 # load in user data
-data_path = Path(__file__).parent.parent / "data" / "users.json"
-with open(data_path) as fp:
-    USERS = json.load(fp)
+
+USERS = load_users()
 
 # check login status
 if "user" not in st.session_state or st.session_state.user is None:
