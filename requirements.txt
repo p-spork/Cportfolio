@@ -2,6 +2,6 @@ argon2-cffi
 yfinance
 pandas
 huggingface-hub
-streamlit
 requests
-altair
+streamlit==1.19.0
+altair<5
