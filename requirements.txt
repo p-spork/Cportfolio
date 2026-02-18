@@ -3,5 +3,5 @@ yfinance
 pandas
 huggingface-hub
 requests
-streamlit==1.19.0
+streamlit
 altair<5
