@@ -3,8 +3,8 @@ this is petar and emils project
 
 Here is a DEMO video of the application 
 
-[https://youtu.be/53wH4nSlltE
-](url)
+https://youtu.be/53wH4nSlltE
+
 
 testing to see repo setup, further details coming
 
