@@ -1,7 +1,7 @@
-argon2-cffi
-yfinance
+streamlit>=1.27
 pandas
+yfinance
 huggingface-hub
 requests
-streamlit
-altair<5
+argon2-cffi
+altair>=5
