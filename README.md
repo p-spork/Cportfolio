@@ -1,5 +1,11 @@
 # Cportfolio
 this is petar and emils project
+
+Here is a DEMO video of the application 
+
+[https://youtu.be/53wH4nSlltE
+](url)
+
 testing to see repo setup, further details coming
 
 to run: streamlit run app.py
